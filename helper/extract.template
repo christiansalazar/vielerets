@@ -1,0 +1,28 @@
+<?php
+
+//
+// Extract Settings 
+//
+define("SOURCE","listings");
+define("TARGET","listing-db");
+define("REFRESH",true);
+define("TRACE",false);
+define("BATCH_SIZE","20");
+define("MAX_IMAGE_COUNT","10");
+define("COLUMN_LIST","");
+define("WORKING_FILE_PATH","/home/christian/www/wh/vielerets");
+define("CACHE_SIZE","2048");
+define("LIMIT","0");
+define("MLS_ONLY",false);
+define("USER","");
+define("CLASS_NAME_STYLE","");
+define("STATUS_VARIABLE","");
+define("STATUS_VARIABLE_VALUE","");
+
+$METACOLUMN_MAP=array();
+
+%MAP%
+
+$IMAGE_MAP=array("TARGET"=> array("0"=>"id","1"=>"location","2"=>"number","3"=>"uid","4"=>"url"),"SOURCE"=> array("0"=>"--NOT_USED--","1"=>"PATH","2"=>"INDEX","3"=>"ID","4"=>"URL"));
+
+?>

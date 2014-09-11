@@ -1,0 +1,8 @@
+echo "(must run as superuser)"
+rm ../extracts/listing
+php -f create-extract.php >> ../extracts/listing
+echo "change owner to final file to: www-data. "
+chown www-data:www-data ../extracts/listing
+ls -l ../extracts
+echo "done";
+
