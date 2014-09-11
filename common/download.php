@@ -4379,7 +4379,7 @@ class DirectControl {
 				$EXCHANGE,
 				$unique_value) {
 		$this->mediaStart = 1;
-		$this->mediaEnd = $EXTRACT_CONTEXT->max_images;
+		$this->mediaEnd = (""===$EXTRACT_CONTEXT->max_images) ? 10 : $EXTRACT_CONTEXT->max_images;
 		if ($SOURCE_CONTEXT->media_multipart) {
 			$this->images = $EXCHANGE->returnMediaObjects($SOURCE_CONTEXT->resource,
 								$SOURCE_CONTEXT->media_type,
