@@ -1,0 +1,8 @@
+logs/
+sources/
+targets/
+extracts/
+batch_control_files/
+cache/
+metadata/
+*.swp
