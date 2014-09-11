@@ -369,8 +369,10 @@ $this->DISPLAY_HANDLER->displayMessage(' - LookupTypes for ' . $resource . ', Lo
                if ($MEMBERNAME == null) {
 //                    $this->error = true;
 //                    $this->lastError = 'No member name';
-                    $this->setError('No member name');
-                    return false;
+                    //$this->setError('No member name');
+                    //return false;
+					$MEMBERNAME = "No member name";
+					return true;
                }
                $this->member->setName($MEMBERNAME);
 
