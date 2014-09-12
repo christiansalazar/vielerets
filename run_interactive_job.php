@@ -737,15 +737,20 @@ if ($isAdvancedQuery) {
 //
 $debugBatch = false;
 if (!$quiet) {
-     $debugBatch = true;
+     $debugBatch = false;
      $debugDevice = './logs/batch.log';
-     //$debugValue = collectInput('Capture debug information (y)?');
-	 $debugValue = 'n';    // to avoid user interaction at startup.
+	 if(isset($_SERVER['argv']))
+		foreach($_SERVER['argv'] as $arg)		 
+			if(($arg == 'debug') || ($arg == 'trace'))
+				$debugBatch=true;
+	 /*
+     $debugValue = collectInput('Capture debug information (y)?');
      if ($debugValue != 'CANCEL') {
           if (strtoupper($debugValue) != 'Y') {
                $debugBatch = false;
           }
      }
+	 */
      if ($debugBatch) {
           $debugValue = collectInput('Debug capture device (' . $debugDevice . ')');
           if ($debugValue != 'CANCEL') {
