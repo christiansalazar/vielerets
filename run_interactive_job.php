@@ -739,7 +739,8 @@ $debugBatch = false;
 if (!$quiet) {
      $debugBatch = true;
      $debugDevice = './logs/batch.log';
-     $debugValue = collectInput('Capture debug information (y)?');
+     //$debugValue = collectInput('Capture debug information (y)?');
+	 $debugValue = 'n';    // to avoid user interaction at startup.
      if ($debugValue != 'CANCEL') {
           if (strtoupper($debugValue) != 'Y') {
                $debugBatch = false;

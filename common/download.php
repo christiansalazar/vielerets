@@ -59,8 +59,14 @@ class Downloader {
 	}
 
 	function handleStream($data) {
-		fwrite($this->tempFileHandle, $data);
-        }
+		if($this->tempFileHandle){
+			fwrite($this->tempFileHandle, $data);
+		}else{
+			// commonly this handle is null when
+			// Disk Cache file directory is trying to create a file
+			// in a directory having no permissions
+		}
+    }
 
 	function finish() {
 		fclose($this->tempFileHandle);
@@ -294,7 +300,12 @@ class Downloader {
 
 		switch ($TARGET_CONTEXT->target_type) {
 			case 'CSV':
-				$this->dataHandle = fopen($TARGET_CONTEXT->data_download_path . '/' . $TARGET_CONTEXT->data_file_name, 'wb');
+				$forced_output = getenv("VIELE_FORCED_OUTPUT_FILENAME");
+        		if(strlen($forced_output) > 0){
+					$this->dataHandle = fopen($forced_output, 'wb');
+				}else
+					$this->dataHandle = fopen($TARGET_CONTEXT->data_download_path 
+						. '/' . $TARGET_CONTEXT->data_file_name, 'wb');
 
 				// data headers
 
