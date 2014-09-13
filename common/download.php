@@ -2892,6 +2892,41 @@ $EXCHANGE->setError("Simulated error");
 		return $buffer;
 	}
 
+ 	function fix_Fields($data){
+        // see issue #7 in github repo
+        $map = array(
+            'statecode'=>array(
+                'florida'=>'FL',
+            ),
+            'status'=>array(
+                'active'=>'ACT',
+                'active with contract'=>'AWC',
+                'pending'=>'PNC',
+                'temporarily off-market'=>'TOM',
+                'withdrawn'=>'WDN',
+                'sold'=>'SLD',
+                'expired'=>'EXP',
+                'leased'=>'LSE',
+                'lease option'=>'LSO',
+                'photo required'=>'PH',
+            ),
+        );
+        $_data = array();
+        foreach($data as $key=>$value){
+            $_key = strtolower($key);
+            $_val = strtolower($value);
+            //printf("[%s]\n[%s]\n------\n",$_key,$_val);
+            if(isset($map[$_key])){
+                if(isset($map[$_key][$_val])){
+                    $_data[$_key]=$map[$_key][$_val];
+                }else
+                    $_data[$_key]=$value;
+            }else
+                $_data[$_key]=$value;
+        }
+        return $_data;
+    }
+
 	function write_rdb($LISTING_OBJECT,
 		$conn,
 		$SOURCE_CONTEXT,
@@ -3023,8 +3058,9 @@ $EXCHANGE->setError("Simulated error");
 		$buffer = null;
 		if ($clearToInsert) {
 		// prepare text data into lists
-
-			$data = $LISTING_OBJECT->getData();
+        	// see issue #7 in github repo
+			$data = $this->fix_Fields($LISTING_OBJECT->getData());
+			//$data = $LISTING_OBJECT->getData();
 //print_r($data);
 			$sqlDataFields = null;
 			$sqlDataValues = null;
