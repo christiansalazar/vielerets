@@ -1,0 +1,13 @@
+chown -R www-data:www-data batch_control_files
+chown -R www-data:www-data cache 
+chown -R www-data:www-data metadata
+chown -R www-data:www-data sources
+chown -R www-data:www-data targets
+chown -R www-data:www-data extracts
+
+chmod 774 -R batch_control_files 
+chmod 774 -R cache
+chmod 774 -R metadata
+chmod 774 -R sources
+chmod 774 -R targets
+chmod 774 -R extracts
